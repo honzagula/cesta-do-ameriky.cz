@@ -1,0 +1,54 @@
+webloader:
+    css:
+        front:
+            tempDir: '%wwwDir%/css'
+            tempPath: 'css'
+
+            files:
+                - %appDir%/../frontend/src/css/bootstrap.min.css
+                - %appDir%/../frontend/src/css/animate.css
+                - %appDir%/../frontend/src/css/animations.css
+                - %appDir%/../frontend/src/css/style.css
+                - %appDir%/../frontend/src/css/custom.css
+                - %appDir%/../frontend/src/css/lightcase.css
+            filters:
+                - @jwlCssMinFilter
+            fileFilters:
+                - @lessFilter
+                - @wlCssFilter
+        admin:
+            tempDir: '%wwwDir%/css'
+            tempPath: 'css'
+            files:
+                - %appDir%/../frontend/src/css/bootstrap.min.css
+                - %appDir%/../frontend/src/css/admin.css
+                - %appDir%/../frontend/src/css/simplemde.min.css
+                - %appDir%/../frontend/src/css/datagrid.css
+
+    js:
+        front:
+            tempDir: '%wwwDir%/js'
+            tempPath: 'js'
+
+            files:
+                - %appDir%/../frontend/src/js/jquery.min.js
+                - %appDir%/../frontend/src/js/bootstrap.min.js
+                - %appDir%/../frontend/src/js/modernizr.js
+                - %appDir%/../frontend/src/js/isotope.pkgd.min.js
+                - %appDir%/../frontend/src/js/jquery.backstretch.min.js
+                - %appDir%/../frontend/src/js/jquery.appear.js
+                - %appDir%/../frontend/src/js/template.js
+                - %appDir%/../frontend/src/js/lightcase.js
+        admin:
+            tempDir: '%wwwDir%/js'
+            tempPath: 'js'
+
+            files:
+                - %appDir%/../frontend/src/js/jquery.min.js
+                - %appDir%/../frontend/src/js/bootstrap.min.js
+                - %appDir%/../frontend/src/js/nette.ajax.js
+                - %appDir%/../frontend/src/js/netteForms.js
+                - %appDir%/../frontend/src/js/simplemde.min.js
+                - %appDir%/../frontend/src/js/datagrid.js
+
+

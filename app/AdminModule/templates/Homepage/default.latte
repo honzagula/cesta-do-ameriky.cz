@@ -1,0 +1,98 @@
+{block content}
+<h1>Přehled</h1>
+
+<div class="row">
+    {if $analyticsToken !== null}
+        <div class="col-md-6" id="timeline"></div>
+        <div class="col-md-6" id="datachart"></div>
+        <div class="col-md-12" id="allViews"></div>
+    {else}
+        <div class="col-md-12">Google Analytics je nedostupné.</div>
+    {/if}
+</div>
+
+{/block}
+
+{block js}
+    {if $analyticsToken !== null}
+        <script>
+            (function(w,d,s,g,js,fs){
+                g=w.gapi||(w.gapi={});g.analytics={ q:[],ready:function(f){ this.q.push(f);}};
+                js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+                js.src='https://apis.google.com/js/platform.js';
+                fs.parentNode.insertBefore(js,fs);js.onload=function(){ g.load('analytics');};
+            }(window,document,'script'));
+        </script>
+        <script>
+            gapi.analytics.ready(function() {
+
+                gapi.analytics.auth.authorize({
+                    'serverAuth': {
+                        'access_token': '{$analyticsToken|noescape}'
+                    }
+                });
+
+                var dataChart1 = new gapi.analytics.googleCharts.DataChart({
+                    query: {
+                        'ids': 'ga:{$socialConfig->getGoogleAnalyticsViewId()|noescape}', // <-- Replace with the ids value for your view.
+                        'start-date': '30daysAgo',
+                        'end-date': 'yesterday',
+                        'metrics': 'ga:sessions,ga:users',
+                        'dimensions': 'ga:date'
+                    },
+                    chart: {
+                        'container': 'timeline',
+                        'type': 'LINE',
+                        'options': {
+                            'width': '100%'
+                        }
+                    }
+                });
+                dataChart1.execute();
+
+                var dataChart2 = new gapi.analytics.googleCharts.DataChart({
+                    query: {
+                        'ids': 'ga:{$socialConfig->getGoogleAnalyticsViewId()|noescape}', // <-- Replace with the ids value for your view.
+                        'start-date': '30daysAgo',
+                        'end-date': 'yesterday',
+                        'metrics': 'ga:pageviews',
+                        'dimensions': 'ga:pagePathLevel2',
+                        'sort': '-ga:pageviews',
+                        'filters': 'ga:pagePathLevel1!=/',
+                        'max-results': 7
+                    },
+                    chart: {
+                        'container': 'datachart',
+                        'type': 'PIE',
+                        'options': {
+                            'width': '100%',
+                            'pieHole': 4/9,
+                        }
+                    }
+                });
+                dataChart2.execute();
+
+                var allViews = new gapi.analytics.googleCharts.DataChart({
+                    query: {
+                        'ids': 'ga:{$socialConfig->getGoogleAnalyticsViewId()|noescape}', // <-- Replace with the ids value for your view.
+                        'start-date': '360daysAgo',
+                        'end-date': 'yesterday',
+                        'metrics': 'ga:pageviews',
+                        'dimensions': 'ga:pagePathLevel2',
+                        'sort': '-ga:pageviews',
+                        'filters': 'ga:pagePathLevel1!=/',
+                        'max-results': 999
+                    },
+                    chart: {
+                        'container': 'allViews',
+                        'type': 'TABLE',
+                        'options': {
+                            'width': '100%',
+                        }
+                    }
+                });
+                allViews.execute();
+            });
+        </script>
+    {/if}
+{/block}

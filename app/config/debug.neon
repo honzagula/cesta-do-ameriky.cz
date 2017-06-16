@@ -1,0 +1,6 @@
+#
+# Configuration applied only in debug mode
+#
+
+application:
+    catchExceptions: no

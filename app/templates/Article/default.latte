@@ -1,0 +1,137 @@
+{block title}{$article->getTitle()}{/block}
+
+{block meta}
+    <meta property="og:url"                content="{link //Article: id => $article->getId(), slug => $article->getSlug()}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="{$article->getSocialTitle()}" />
+    <meta property="og:description"        content="{$article->getSocialContent()}" />
+    <meta property="og:image"              content="{if $article->getMainPhoto()}{$article->getSocialPhoto()|img}{else}{$hostname}/images/{$defaultImage}{/if}" />
+{/block}
+
+{block content}
+    <div id="banner" class="banner">
+        <div class="banner-image"></div>
+        <div class="banner-caption">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
+                        <h1 class="text-center">{$article->getTitle()}</h1>
+                        <p class="lead text-center" n:if="$article->getSubtitle()">{$article->getSubtitle()}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="article-wrapper">
+                    <div class="article-body">
+                        <p>{$article->getParsedContent()|noescape}</p>
+                    </div>
+                    <div class="article-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row dropdown">
+            <div class="pull-left">
+                {if $article->getNextArticle() && $article->getNextArticle()->isPublished()}
+                    <a n:href="Article: id => $article->getNextArticle()->getId(), slug => $article->getSlug()" class="btn btn-danger btn-xs"><i class="fa fa-caret-left"></i> {$article->getNextArticle()->getTitle()}</a>
+                {/if}
+
+                {if $article->getPreviousArticle() && $article->getPreviousArticle()->isPublished()}
+                <a n:href="Article: id => $article->getPreviousArticle()->getId(), slug => $article->getSlug()" class="btn btn-danger btn-xs">{$article->getPreviousArticle()->getTitle()} <i class="fa fa-caret-right"></i></a>
+                {/if}
+            </div>
+            <div class="social-button pull-right">
+                <button class="btn btn-danger btn-xs  dropdown-toggle share-button" type="button" id="shareMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="fa fa-share-alt"></span> Sdílet</button>
+                <ul class="dropdown-menu" aria-labelledby="shareMenu">
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?app_id={$socialConfig->getFacebookAppId()|noescape}&sdk=joey&u={$articleLink}&display=popup&ref=plugin&src=share_button" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=580')"><i class="fa fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#" class="" onclick="tryToCopyToClipboard({link //Article: id => $article->getId(), slug => $article->getSlug()});" data-toggle="modal" data-target="#urlModal"><i class="fa fa-link"></i> Odkaz</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr n:if="count($article->getPhotos())">
+        <div class="row" n:if="count($article->getPhotos())">
+            {foreach $article->getPhotos() as $photo}
+                <div class="col-md-3">
+                    <a href="{$photo|img}" data-rel="lightcase:photos"><img src="{$photo|imgThumb}" class="img-responsive"></a>
+                </div>
+            {/foreach}
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fb-comments" data-href="{$articleLink}" data-numposts="10" data-width="100%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="urlModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Sdílet odkaz</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Následující odkaz byl zkopírován do schránky:<br>
+                        <input type="text" class="form-control" value="{$articleLink}">
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zavřít</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+
+{block scripts}
+    <script>
+        $(document).ready(function() {
+            {if $article->getMainPhoto()}
+                var image = "{$article->getMainPhoto()|img|noescape}";
+            {else}
+                var image = "{$basePath|noescape}/images/{$defaultImage|noescape}";
+            {/if}
+            $('.banner-image').backstretch(image);
+
+            $('a[data-rel^=lightcase]').lightcase();
+        });
+
+        function tryToCopyToClipboard(text) {
+            result = copyToClipboard(text);
+        }
+
+        function copyToClipboard(text) {
+            if (window.clipboardData && window.clipboardData.setData) {
+                // IE specific code path to prevent textarea being shown while dialog is visible.
+                return clipboardData.setData("Text", text);
+
+            } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+                var textarea = document.createElement("textarea");
+                textarea.textContent = text;
+                textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+                } catch (ex) {
+                    console.warn("Copy to clipboard failed.", ex);
+                    return false;
+                } finally {
+                    document.body.removeChild(textarea);
+                }
+            }
+        }
+    </script>
+{/block}

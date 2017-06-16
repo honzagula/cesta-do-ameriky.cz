@@ -1,0 +1,119 @@
+{**
+ * My Application layout template.
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+*}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="robots" content="{$robots}" n:ifset="$robots">
+    <meta name="author" content="Istrix">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{asset 'images/star.png'}">
+    <title>{block title|striptags}Cesta do Ameriky{/block}</title>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css' media="none" onload="if(media!='all')media='all'">
+    <link href='//fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css' media="none"  onload="if(media!='all')media='all'">
+    <link href="{asset 'fonts/font-awesome/css/font-awesome.css'}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    {control css}
+
+    {block head}{/block}
+
+    {block meta}{/block}
+</head>
+
+<body class="no-trans">
+{include "_snippets/_facebook.latte"}
+<div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+<header class="header fixed clearfix navbar navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header-left clearfix">
+
+                    <div class="logo smooth-scroll">
+                        <a n:href="Homepage:"><img id="logo" src="{asset 'images/logo.svg'}" alt="Worthy" height="100"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{include #content}
+
+<footer id="footer">
+    <div class="footer section">
+        <div class="container">
+            {*
+            <h1 class="title text-center" id="contact">Kontaktujte nás</h1>
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="footer-content">
+                        <p class="large">Máte-li zájem o naše služby nebo se potřebujete jen více informovat, nebojte se využít náš kontaktní formulář.</p>
+                        <p class="large">Ozveme se zpět.</p>
+                        <ul class="list-icons">
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="footer-content">
+                        <form role="form" id="footer-form" action="/" method="post">
+                            <div class="form-group has-feedback">
+                                <label class="sr-only" for="frm-contactForm-name">Jméno / Název společnosti</label>
+                                <input type="text" class="form-control" placeholder="Jméno / Název společnosti" required name="name" id="frm-contactForm-name">
+                                <i class="fa fa-user form-control-feedback"></i>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label class="sr-only" for="frm-contactForm-email">Email</label>
+                                <input type="email" class="form-control" id="email2" placeholder="Email" required name="email">
+                                <i class="fa fa-envelope form-control-feedback"></i>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label class="sr-only" for="frm-contactForm-message">Obsah zprávy</label>
+                                <textarea class="form-control" rows="8" id="message2" placeholder="Obsah zprávy" required name="message"></textarea>
+                                <i class="fa fa-pencil form-control-feedback"></i>
+                            </div>
+                            <input type="submit" value="Odeslat" class="btn btn-default" name="send">
+                            <input type="hidden" name="_do" value="contactForm-submit">								</form>
+                    </div>
+                </div>
+            </div>
+            *}
+        </div>
+    </div>
+    <div class="subfooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">Copyright © 2017 <a href="http://istrix.cz">Istrix</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+{control js}
+{block scripts}{/block}
+<script>
+    var lsText = '';
+    $("#flashMessage").ready(function($) {
+        $('#flashMessage').text(lsText).animate({'margin-bottom':0},200);
+        setTimeout( function(){
+            $('#flashMessage').animate({'margin-bottom':-55},200);
+        }, 5*1000);
+    });
+</script>
+{include "_snippets/_google.latte"}
+
+</body>
+
+</html>
+

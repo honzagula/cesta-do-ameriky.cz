@@ -1,0 +1,24 @@
+{block content}
+<h1>Přidat článek</h1>
+
+    {control addArticleForm}
+{/block}
+
+{block js}
+    <script>
+        $(document).ready(function () {
+            var simplemde = new SimpleMDE({
+                element: $('.mde')[0],
+                autofocus: true,
+                hideIcons: ["guide", "fullscreen", "side-by-side", "image", "link"],
+                autosave: {
+                    enabled: true,
+                    uniqueId: "articleForm-{$random|noescape}",
+                    delay: 1000,
+                },
+                spellChecker: false,
+                status: ["autosave"], // Optional usage
+            });
+        });
+    </script>
+{/block}

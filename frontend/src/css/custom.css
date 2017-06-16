@@ -1,0 +1,40 @@
+.flashMessage {
+	background-color: #00a6e5;
+	display: block;
+	width: 100%;
+	text-align: center;
+	color: white;
+	padding: 10px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 999999;
+	margin-bottom: -55px;
+}
+
+.article-header {
+	text-align: center;
+	padding: 20px;
+}
+
+.article-body {
+	text-align: justify;
+	padding: 10px;
+}
+
+.article-footer {
+	text-align: center;
+	padding: 20px;
+}
+
+.text-light {
+	color: white;
+}
+
+.centered {
+	text-align: center;
+}
+
+.share-button {
+	font-family: 'Open Sans', sans-serif;
+}

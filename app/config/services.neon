@@ -1,0 +1,45 @@
+#
+# Simple used services.
+# For services that are part of a bigger component, use separate file
+# i.e. routes.neon for routing services and other configuration
+#
+
+services:
+    - Instante\RequireJS\JsModuleContainer(%paths.frontend%/RequireJSDependencies.json)
+    - Instante\RequireJS\Components\JsLoaderFactory(%useSourceJavaScripts%)
+
+    # ORM
+    - App\Model\Persister
+
+    # webloader
+    wlCssFilter: WebLoader\Filter\CssUrlsFilter(%wwwDir%)
+    lessFilter: WebLoader\Filter\LessFilter
+    jwlCssMinFilter: Joseki\Webloader\CssMinFilter
+
+    # article
+    - App\Model\Article\ArticleDao
+    - App\Model\Article\ArticleFactory
+    - App\Form\ArticleFormFactory
+    - App\Form\ArticleMetaFormFactory
+    - App\AdminModule\Datagrid\ArticleDatagridFactory
+    - App\Form\ArticleRelationsFormFactory
+
+    # user
+    - App\Model\User\UserDao
+    - App\Form\LoginFormFactory
+
+    # common
+    - App\Form\BootstrapFormFactory
+
+    # photo
+    - App\Model\Photo\PhotoFactory
+    - App\Model\Photo\PhotoStorage(%photo.wwwFolder%, %photo.photoFolder%)
+    - App\Model\Photo\PhotoUploader
+    - App\Model\Photo\PhotoRemover
+    - App\Form\PhotoUploadFormFactory
+    - App\Model\Photo\PhotoDao
+
+    # social
+    - App\Model\Social\SocialConfig(%social.facebookAppId%, %social.googleAnalyticsId%, %social.gaViewId%)
+    - App\Analytics\AnalyticsToken(%social.gaKeyLocation%, %tempDir%)
+

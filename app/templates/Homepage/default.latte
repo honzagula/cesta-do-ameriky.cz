@@ -1,0 +1,62 @@
+{block meta}
+    <meta property="og:url"                content="{link //Homepage:}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="Cesta do Ameriky" />
+    <meta property="og:description"        content="Krátký blog o naší cestě do Ameriky" />
+    <meta property="og:image"              content="{$hostname}/images/{$defaultImage}" />
+{/block}
+
+{block content}
+    <div id="banner" class="banner">
+        <div class="banner-image"></div>
+        <div class="banner-caption">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
+                        <h1 class="text-center">Cesta do <span>Ameriky</span></h1>
+                        <p class="lead text-center">Krátký příběh o naší cestě do <span>USA</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="space"></div>
+    {var $counter = 0}
+    {foreach $articles as $article}
+
+        {if $counter === 0}<div class="container"><div class="row">{/if}
+            <div class="col-md-6">
+                <div class="article-wrapper">
+                    <div class="article-header banner-image main-photo-{$article->getId()}">
+                        <a n:href="Article:default id => $article->getId(), slug => $article->getSlug()">
+                            <h2 class="text-light">{$article->getTitle()}</h2>
+                        </a>
+                    </div>
+                    <div class="article-body">
+                        <p>{$article->getClearedContent()|truncate:400:'...'}</p>
+                    </div>
+                    <div class="article-footer">
+                        <a class="btn btn-xs btn-default" n:href="Article:default id => $article->getId(), slug => $article->getSlug()">Číst více &raquo;</a>
+                    </div>
+                </div>
+            </div>
+            {var $counter = $counter+1}
+        {if $counter === 2}</div></div>{var $counter = 0}{/if}
+
+
+    {/foreach}
+    {if $counter !== 0}</div></div>{/if}
+
+{/block}
+
+{block scripts}
+
+    <script>
+        $(document).ready(function() {
+            {foreach $articles as $article}
+                {if $article->getMainPhoto()}$('.main-photo-{$article->getId()}').backstretch("{$article->getMainPhoto()|imgThumb|noescape}");{/if}
+            {/foreach}
+        });
+    </script>
+{/block}

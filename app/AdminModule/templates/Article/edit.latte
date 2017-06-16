@@ -1,0 +1,80 @@
+{block content}
+<h1>Upravit článek #{$article->getId()}</h1>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#content" aria-controls="content" role="tab" data-toggle="tab">Obsah</a></li>
+        <li><a href="#meta" aria-controls="meta" role="tab" data-toggle="tab">Meta</a></li>
+        <li><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">Fotky</a></li>
+        <li><a href="#relations" aria-controls="relations" role="tab" data-toggle="tab">Vazby</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="content">
+            {snippet articleTab}
+                {control articleEditForm}
+            {/snippet}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="meta">
+            {snippet metaTab}
+                {control metaForm}
+            {/snippet}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="photos">
+            {snippet photosTab}
+                {control photoForm}
+                <hr>
+                <div class="row">
+                    {foreach $article->getPhotos() as $photo}
+                        <div class="col-md-3">
+                            <div class="centered">
+                                <i title="{$photo->getName()}" class="fa fa-info"></i> | {($photo->getSize()/1000000)|number:2} MB |
+                                <a n:href="removePhoto! photoId => $photo->getId()" title="Smazat" class="text-danger ajax"><i class="fa fa-trash"></i></a> |
+                                {if !$article->getMainPhoto() || $photo->getId() !== $article->getMainPhoto()->getId()}
+                                    <a n:href="setMainPhoto! photoId => $photo->getId()" title="Nastavit jako hlavní" class="text-info ajax"><i class="fa fa-image"></i></a>
+                                {else}
+                                    <span class="text-info">Hlavní</span>
+                                {/if}
+                            </div>
+                            <img src="{$photo|imgThumb}" class="img-responsive">
+                        </div>
+                    {/foreach}
+                </div>
+            {/snippet}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="relations">
+            {snippet relationTab}
+                {control relationsForm}
+            {/snippet}
+        </div>
+    </div>
+{/block}
+
+{block js}
+<script>
+    var simplemde;
+
+    function initMD() {
+        simplemde = new SimpleMDE({
+            element: $('.mde')[0],
+            autofocus: false,
+            hideIcons: ["fullscreen", "side-by-side"],
+            autosave: {
+                enabled: false,
+                uniqueId: "articleForm-{$article->getId()}",
+                delay: 1000
+            },
+            spellChecker: false,
+            status: ["autosave"]
+        });
+    }
+</script>
+{snippet initMDSnippet}
+<script>
+    $(document).ready(function () {
+        initMD();
+    });
+</script>
+{/snippet}
+
+{/block}

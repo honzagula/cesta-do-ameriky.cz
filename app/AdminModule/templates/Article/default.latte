@@ -1,0 +1,38 @@
+{block content}
+    <h1>Články</h1>
+
+    <div class="top-menu">
+        <a n:href="Article:add" class="btn btn-primary">Přidat článek</a>
+    </div>
+
+    <hr>
+
+    {*
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Nadpis</th>
+            <th>Stav</th>
+            <th>Vytvořeno</th>
+            <th>Upraveno</th>
+            <th>Akce</th>
+        </tr>
+
+        <tr n:foreach="$articles as $article">
+            <td>{$article->getId()}</td>
+            <td>{$article->getTitle()}</td>
+            <td>
+                {if $article->isPublished()}
+                    <span class="label label-success">Publikováno</span>
+                {else}
+                    <span class="label label-warning">Rozepsáno</span>
+                {/if}
+            </td>
+            <td>{$article->getCreatedAt()|date:"d.m.Y"}</td>
+            <td>{if $article->getUpdatedAt() !== null}{$article->getUpdatedAt()|date:"d.m.Y"}{else}n/a{/if}</td>
+            <td><a n:href="Article:edit id => $article->getId()" class="btn btn-warning btn-xs">Upravit</a> </td>
+        </tr>
+    </table>
+    *}
+    {control datagrid}
+{/block}

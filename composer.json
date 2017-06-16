@@ -1,0 +1,28 @@
+{
+    "name": "honzagula/cesta-do-ameriky",
+    "description": "Travelers blog",
+    "config": {
+        "vendor-dir": "./vendor"
+    },
+    "license": "",
+    "require": {
+        "php": ">=5.6.0",
+        "nette/nette": "~2.4",
+        "instante/require-js": "~1.1",
+        "instante/doctrine": "~1.1",
+        "instante/bootstrap": "~1.0",
+        "instante/ui": "~1.0.3",
+        "istrix/webloader": "^2.5",
+        "joseki/webloader-filters": "^1.1",
+        "instante/bootstrap-3-renderer": "2.0.1",
+        "instante/assets": "^0.1.1",
+        "erusev/parsedown": "^1.6",
+        "ublaboo/datagrid": "^5.2",
+        "google/apiclient": "^2.0"
+    },
+    "require-dev": {
+        "nette/tester": "@dev",
+        "jakub-onderka/php-parallel-lint": "~0.6",
+        "instante/php-test-suite": "@dev"
+    }
+}

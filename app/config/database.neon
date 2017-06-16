@@ -1,0 +1,26 @@
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+parameters:
+    database:
+        driver: pdo_mysql
+        host: localhost
+        dbname:
+        user:
+        password:
+        charset: utf8
+        collation: utf8_czech_ci
+
+doctrine:
+    driver: %database.driver%
+    host: %database.host%
+    dbname: %database.dbname%
+    user: %database.user%
+    password: %database.password%
+    charset: %database.charset%
+# kdyby/doctrine can handle entity metadata mapping inside appDir by default.
+# if you want to use custom metadata mapping,  uncomment following lines
+# and/or add your own mapping
+#    metadata:
+#        App: %appDir%
+
+migrations:
+    directory: "%paths.root%/migrations"
