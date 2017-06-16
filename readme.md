@@ -1,70 +1,28 @@
+# Cesta do Ameriky
 
-      ___           _              _                   //
-     |_ _|_ __  ___| |_ __ _ _ __ | |_ ___       .∩∩.//
-      | || '_ \/ __| __/ _` | '_ \| __/ _ \     .∩∩∩∩.
-      | || | | \__ \ || (_| | | | | ||  __/    \     ) /
-     |___|_| |_|___/\__\__,_|_| |_|\__\___|     \_____/
+This is source code of blog [cesta-do-ameriky.cz](https://cesta-do-ameriky.cz) based on Nette Framework.
 
-
-
-[![Build Status](https://travis-ci.org/instante/skeleton.svg?branch=master)](https://travis-ci.org/instante/skeleton)
-[![Downloads this Month](https://img.shields.io/packagist/dm/instante/skeleton.svg)](https://packagist.org/packages/instante/skeleton)
-[![Latest stable](https://img.shields.io/packagist/v/instante/skeleton.svg)](https://packagist.org/packages/instante/skeleton)
-
-
-Create new application using Instante:
---------------------------------------
-
-1. install skeleton using composer:
-
-        composer create-project instante/skeleton .
-
-2. customize this readme.md to correspond to your new project (and remove this "Create new application" section)
-3. use bin/deployment/init-project.php to initialize your new project or customize composer.json, frontend/package.json,
- frontend/bower.json with your own project name, description, license etc.
-4. initialize new git repository in project's folder:
-
-        git init
-        # on windows, use bin/git/setup-git.cmd to use LF line endings
-        git add .
-        git commit -m "initial commit"
-
-
-Deploy application:
-------------------------
+## How to deploy:
 
 1. install dependencies by executing `composer install` from project root
 2. Ensure that the database schema exists and is empty. Optionally, you may create one extra database schema for tests.
 3. Ensure that the www server has write access to these folders
     - temp
     - log
-4. setup local environment using bin/deployment/deploy-project.php
+4. setup local environment using `bin/deployment/deploy-project.php`
 
-Develop/compile frontend:
-------------------------
+# Google analytics
 
-install node.js, then use shell commands:
+To get GA working, you need to add your GA IDs to local.neon config file. For example:
+```
+parameters:
+    social:
+        googleAnalyticsId: UA-12345678-1
+        gaViewId: 11111111
+```
 
-        # setup
-        # install grunt CLI and bower as global node.js module
-        your-project/frontend$ npm install -g grunt-cli
-        your-project/frontend$ npm install -g bower
-        
-        # install local grunt packages
-        your-project/frontend$ npm install
-        
-        # install local bower components
-        your-project/frontend$ bower install
-        
-        # start watchdog
-        your-project/frontend$ grunt
+For GA charts in Admin section you need to create GA service key with correspondent GA rights and put it to `/app/config/ga-key.json`.
 
-the watchdog starts to automatically compile less and js on any change.
+# Facebook comments
 
-Managing composer packages:
----------------------------
-
-To install new dependency - library:
-
-1. add the dependency to composer.json
-2. run `composer update --lock` - the --lock parameter preserves versions of other libraries.
+To get Facebook comments working, you need to override `social.facebookAppId` parameter.
