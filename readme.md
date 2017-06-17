@@ -10,6 +10,7 @@ This is source code of blog [cesta-do-ameriky.cz](https://cesta-do-ameriky.cz) b
     - temp
     - log
 4. setup local environment using `bin/deployment/deploy-project.php`
+5. create administrator by running `php www/index.php app:create-admin <username> <email> <password>`
 
 # Google analytics
 
