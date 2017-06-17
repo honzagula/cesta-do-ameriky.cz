@@ -6,9 +6,11 @@ This is source code of blog [cesta-do-ameriky.cz](https://cesta-do-ameriky.cz) b
 
 1. install dependencies by executing `composer install` from project root
 2. Ensure that the database schema exists and is empty. Optionally, you may create one extra database schema for tests.
-3. Ensure that the www server has write access to these folders
+3. Ensure that the www server has write access to these folders:
     - temp
     - log
+    - www/css
+    - www/js
 4. setup local environment using `bin/deployment/deploy-project.php`
 5. create administrator by running `php www/index.php app:create-admin <username> <email> <password>`
 
