@@ -2,6 +2,8 @@
 
 This is source code of blog [cesta-do-ameriky.cz](https://cesta-do-ameriky.cz) based on Nette Framework.
 
+Written by Jan Gula
+
 ## How to deploy:
 
 1. install dependencies by executing `composer install` from project root
@@ -11,6 +13,7 @@ This is source code of blog [cesta-do-ameriky.cz](https://cesta-do-ameriky.cz) b
     - log
     - www/css
     - www/js
+    - www/content
 4. setup local environment using `bin/deployment/deploy-project.php`
 5. create administrator by running `php www/index.php app:create-admin <username> <email> <password>`
 
@@ -29,3 +32,7 @@ For GA charts in Admin section you need to create GA service key with correspond
 # Facebook comments
 
 To get Facebook comments working, you need to override `social.facebookAppId` parameter.
+
+## Thanks to
+- Jan Škovran
+- Instante
