@@ -8,7 +8,7 @@ class SocialConfig
     private $googleAnalyticsId;
     private $googleAnalyticsViewId;
 
-    public function __construct(string $facebookAppId, string $googleAnalyticsId, int $googleAnalyticsViewId)
+    public function __construct(?string $facebookAppId, ?string $googleAnalyticsId, ?int $googleAnalyticsViewId)
     {
         $this->facebookAppId = $facebookAppId;
         $this->googleAnalyticsId = $googleAnalyticsId;
