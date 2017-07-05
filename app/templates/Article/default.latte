@@ -1,4 +1,4 @@
-{block title}{$article->getTitle()}{/block}
+{block title}{$article->getTitle()} | {include parent}{/block}
 
 {block meta}
     <meta property="og:url"                content="{link //Article: id => $article->getId(), slug => $article->getSlug()}" />
