@@ -6,6 +6,7 @@
         <li><a href="#meta" aria-controls="meta" role="tab" data-toggle="tab">Meta</a></li>
         <li><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">Fotky</a></li>
         <li><a href="#relations" aria-controls="relations" role="tab" data-toggle="tab">Vazby</a></li>
+        <li><a href="#preview" aria-controls="relations" role="tab" data-toggle="tab">Náhled</a></li>
     </ul>
 
     <!-- Tab panes -->
@@ -45,6 +46,11 @@
         <div role="tabpanel" class="tab-pane" id="relations">
             {snippet relationTab}
                 {control relationsForm}
+            {/snippet}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="preview">
+            {snippet preview}
+                <iframe src="{link :Article: id => $article->getId()}" width="100%" height="1000"></iframe>
             {/snippet}
         </div>
     </div>
