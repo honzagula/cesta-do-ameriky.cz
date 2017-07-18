@@ -60,7 +60,7 @@
         <div class="row" n:if="count($article->getPhotos())">
             {foreach $article->getPhotos() as $photo}
                 <div class="col-md-3">
-                    <a href="{$photo|img}" data-rel="lightcase:photos"><img src="{$photo|imgThumb}" class="img-responsive"></a>
+                    <a href="{$photo|img}" data-rel="lightcase:photos"><img src="{$photo|imgThumb}" class="img-responsive img-gallery"></a>
                 </div>
             {/foreach}
         </div>
