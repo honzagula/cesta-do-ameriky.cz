@@ -40,11 +40,11 @@
         <div class="row dropdown">
             <div class="pull-left">
                 {if $article->getNextArticle() && $article->getNextArticle()->isPublished()}
-                    <a n:href="Article: id => $article->getNextArticle()->getId(), slug => $article->getSlug()" class="btn btn-danger btn-xs"><i class="fa fa-caret-left"></i> {$article->getNextArticle()->getTitle()}</a>
+                    <a n:href="Article: id => $article->getNextArticle()->getId(), slug => $article->getNextArticle()->getSlug()" class="btn btn-danger btn-xs"><i class="fa fa-caret-left"></i> {$article->getNextArticle()->getTitle()}</a>
                 {/if}
 
                 {if $article->getPreviousArticle() && $article->getPreviousArticle()->isPublished()}
-                <a n:href="Article: id => $article->getPreviousArticle()->getId(), slug => $article->getSlug()" class="btn btn-danger btn-xs">{$article->getPreviousArticle()->getTitle()} <i class="fa fa-caret-right"></i></a>
+                <a n:href="Article: id => $article->getPreviousArticle()->getId(), slug => $article->getPreviousArticle()->getSlug()" class="btn btn-danger btn-xs">{$article->getPreviousArticle()->getTitle()} <i class="fa fa-caret-right"></i></a>
                 {/if}
             </div>
             <div class="social-button pull-right">
