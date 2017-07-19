@@ -12,4 +12,6 @@ interface ArticleDaoInterface
     public function findById(int $previousId): Article;
 
     public function getCount(bool $publishedOnly = true): int;
+
+    public function getLastUpdate(bool $publishedOnly = true): \DateTimeInterface;
 }

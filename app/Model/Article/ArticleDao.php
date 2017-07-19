@@ -53,4 +53,17 @@ class ArticleDao extends BaseDao implements ArticleDaoInterface
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    public function getLastUpdate(bool $publishedOnly = true): \DateTimeInterface
+    {
+        $qb = $this->getRepository()->createQueryBuilder('a')
+            ->select('max(a.updatedAt)');
+
+        if ($publishedOnly) {
+            $qb->where('a.published = :published')
+                ->setParameter('published', true);
+        }
+
+        return new \DateTimeImmutable($qb->getQuery()->getSingleScalarResult());
+    }
 }

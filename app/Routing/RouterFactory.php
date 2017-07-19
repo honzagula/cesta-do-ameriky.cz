@@ -19,6 +19,7 @@ class RouterFactory
 
             $router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
             $router[] = new Route('/archiv', 'Archive:default');
+            $router[] = new Route('/sitemap.xml', 'Sitemap:default');
 
             $router[] = new Route('<id [0-9]+>/<slug>', 'Article:default');
 
