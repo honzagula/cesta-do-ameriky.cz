@@ -1,9 +1,10 @@
 {block meta}
     <meta property="og:url"                content="{link //Homepage:}" />
-    <meta property="og:type"               content="article" />
+    <meta property="og:type"               content="website" />
     <meta property="og:title"              content="Cesta do Ameriky" />
     <meta property="og:description"        content="Krátký blog o naší cestě do Ameriky" />
     <meta property="og:image"              content="{$hostname}/images/{$defaultImage}" />
+    <meta property="fb:app_id"             content="{$socialConfig->getFacebookAppId()|noescape}" />
 {/block}
 
 {block content}
