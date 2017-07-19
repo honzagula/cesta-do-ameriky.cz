@@ -1,0 +1,25 @@
+{var $counter = 0}
+{foreach $articles as $article}
+
+    {if $counter === 0}<div class="container"><div class="row">{/if}
+    <div class="col-md-6">
+        <div class="article-wrapper">
+            <div class="article-header banner-image main-photo-{$article->getId()}">
+                <a n:href="Article:default id => $article->getId(), slug => $article->getSlug()">
+                    <h2 class="text-light">{$article->getTitle()}</h2>
+                </a>
+            </div>
+            <div class="article-body">
+                <p>{$article->getClearedContent()|truncate:400:'...'}</p>
+            </div>
+            <div class="article-footer">
+                <a class="btn btn-xs btn-default" n:href="Article:default id => $article->getId(), slug => $article->getSlug()">Číst více &raquo;</a>
+            </div>
+        </div>
+    </div>
+{var $counter = $counter+1}
+    {if $counter === 2}</div></div>{var $counter = 0}{/if}
+
+
+{/foreach}
+{if $counter !== 0}</div></div>{/if}

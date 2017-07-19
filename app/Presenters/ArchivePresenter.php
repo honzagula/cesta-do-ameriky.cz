@@ -5,9 +5,9 @@ namespace App\Presenters;
 use App\Model\Article\Article;
 use App\Model\Article\ArticleDaoInterface;
 
-final class HomepagePresenter extends FrontPresenter
+final class ArchivePresenter extends FrontPresenter
 {
-    const ARTICLE_LIMIT = 10;
+    const ARTICLE_LIMIT = 999999999;
 
     /** @var ArticleDaoInterface @inject */
     public $articleDao;
@@ -15,20 +15,15 @@ final class HomepagePresenter extends FrontPresenter
     /** @var Article[] */
     private $articles;
 
-    /** @var int */
-    private $articleCount;
-
     public function actionDefault(): void
     {
-        $this->articles = $this->articleDao->findByNewest(self::ARTICLE_LIMIT);
-        $this->articleCount = $this->articleDao->getCount();
+        $this->articles = $this->articleDao->findByNewest(self::ARTICLE_LIMIT, HomepagePresenter::ARTICLE_LIMIT);
     }
 
     public function renderDefault(): void
     {
         $this->getTemplate()->setParameters([
             'articles' => $this->articles,
-            'showArchiveButton' => $this->articleCount > count($this->articles),
         ]);
     }
 }

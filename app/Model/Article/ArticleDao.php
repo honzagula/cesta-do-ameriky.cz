@@ -40,4 +40,17 @@ class ArticleDao extends BaseDao implements ArticleDaoInterface
 
         return $article;
     }
+
+    public function getCount(bool $publishedOnly = true): int
+    {
+        $qb = $this->getRepository()->createQueryBuilder('a')
+            ->select('count(a)');
+
+        if ($publishedOnly) {
+            $qb->where('a.published = :published')
+                ->setParameter('published', true);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

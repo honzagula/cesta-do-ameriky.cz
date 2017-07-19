@@ -18,6 +18,7 @@ class RouterFactory
             $secureFlag = $useSecureRoutes ? Route::SECURED : 0;
 
             $router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
+            $router[] = new Route('/archiv', 'Archive:default');
 
             $router[] = new Route('<id [0-9]+>/<slug>', 'Article:default');
 

@@ -1,7 +1,7 @@
 {block meta}
     <meta property="og:url"                content="{link //Homepage:}" />
     <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="Cesta do Ameriky" />
+    <meta property="og:title"              content="Archiv - Cesta do Ameriky" />
     <meta property="og:description"        content="Krátký blog o naší cestě do Ameriky" />
     <meta property="og:image"              content="{$hostname}/images/{$defaultImage}" />
     <meta property="fb:app_id"             content="{$socialConfig->getFacebookAppId()|noescape}" />
@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
                         <h1 class="text-center">Cesta do <span>Ameriky</span></h1>
-                        <p class="lead text-center">Krátký příběh o naší cestě do <span>USA</span></p>
+                        <p class="lead text-center">Archiv</p>
                     </div>
                 </div>
             </div>
@@ -24,17 +24,15 @@
 
     <div class="space"></div>
 
-    {include "../_snippets/_articleList.latte"}
-
-    {if $showArchiveButton}
-    <div class="space"></div>
-
     <div class="row">
         <div class="col-md-12 centered">
-            <a n:href="Archive:default" class="btn btn-danger btn-lg">Starší články <i class="fa fa-caret-right"></i></a>
+            <a n:href="Homepage:default" class="btn btn-danger btn-lg"><i class="fa fa-caret-left"></i> Novější články</a>
         </div>
     </div>
-    {/if}
+
+    <div class="space"></div>
+
+    {include "../_snippets/_articleList.latte"}
 
 {/block}
 
