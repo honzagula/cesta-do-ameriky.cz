@@ -5,6 +5,7 @@
     <div class="col-md-6">
         <div class="article-wrapper">
             <div class="article-header banner-image main-photo-{$article->getId()}">
+                <div class="article-header-overlay"></div>
                 <a n:href="Article:default id => $article->getId(), slug => $article->getSlug()">
                     <h2 class="text-light">{$article->getTitle()}</h2>
                 </a>
