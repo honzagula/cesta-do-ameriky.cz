@@ -17,6 +17,19 @@
 	padding: 20px;
 }
 
+.article-header-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.55);
+}
+
+.article-header a {
+	position: relative;
+}
+
 .article-body {
 	text-align: justify;
 	padding: 10px;
