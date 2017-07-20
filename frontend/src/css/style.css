@@ -289,6 +289,12 @@ blockquote {
 .banner-caption h1 {
 	font-size: 60px;
 }
+
+@media screen and (max-width: 650px) {
+	.banner-caption h1 {
+		font-size: 30px;
+	}
+}
 .subfooter p {
 	margin-bottom: 0;
 }
