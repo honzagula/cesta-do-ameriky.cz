@@ -106,6 +106,7 @@ final class ArticlePresenter extends AdminPresenter
             $this->redrawControl('metaTab');
             $this->redrawControl('status');
             $this->redrawControl('initMDSnippet');
+            $this->redrawControl('preview');
         };
 
         return $form;
@@ -118,6 +119,7 @@ final class ArticlePresenter extends AdminPresenter
             $this->flashSuccess('Fotky nahrány');
             $this->redrawControl('photosTab');
             $this->redrawControl('status');
+            $this->redrawControl('preview');
         };
 
         return $form;
@@ -146,6 +148,7 @@ final class ArticlePresenter extends AdminPresenter
 
         $this->redrawControl('status');
         $this->redrawControl('photosTab');
+        $this->redrawControl('preview');
     }
 
     public function handleSetMainPhoto(int $photoId): void
@@ -161,6 +164,7 @@ final class ArticlePresenter extends AdminPresenter
 
         $this->redrawControl('status');
         $this->redrawControl('photosTab');
+        $this->redrawControl('preview');
     }
 
     protected function createComponentDatagrid(): DataGrid
@@ -178,6 +182,7 @@ final class ArticlePresenter extends AdminPresenter
             $this->flashSuccess('Vazby uloženy');
             $this->redrawControl('status');
             $this->redrawControl('relationTab');
+            $this->redrawControl('preview');
         };
 
         return $form;
