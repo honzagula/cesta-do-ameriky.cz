@@ -17,17 +17,18 @@ class ArticleDao extends BaseDao implements ArticleDaoInterface
      */
     public function findByNewest(int $limit = 10, int $offset = 0, bool $publishedOnly = true): array
     {
-        $conditions = [];
+        $qb = $this->getRepository()->createQueryBuilder('a');
+        $qb->addSelect('COALESCE((a.nextArticle), 9999999999999) AS HIDDEN srt');
+
         if ($publishedOnly) {
-            $conditions['published'] = true;
+            $qb->where('a.published = :published')
+                ->setParameter('published', true);
         }
 
-        return $this->getRepository()->findBy(
-            $conditions,
-            ['createdAt' => 'DESC'],
-            $limit,
-            $offset
-        );
+        $qb->orderBy('srt', 'DESC');
+        $qb->addOrderBy('a.createdAt', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findById(int $id): Article
