@@ -28,6 +28,9 @@ class ArticleDao extends BaseDao implements ArticleDaoInterface
         $qb->orderBy('srt', 'DESC');
         $qb->addOrderBy('a.createdAt', 'DESC');
 
+        $qb->setMaxResults($limit);
+        $qb->setFirstResult($offset);
+
         return $qb->getQuery()->getResult();
     }
 
