@@ -57,6 +57,13 @@
             </div>
         </div>
 
+        <hr>
+        <div class="row">
+            <div class="col-md-12 centered">
+                {include "../_snippets/_sclick_horizontal.latte"}
+            </div>
+        </div>
+
         <hr n:if="count($article->getPhotos())">
         <div class="row" n:if="count($article->getPhotos())">
             {foreach $article->getPhotos() as $photo}
