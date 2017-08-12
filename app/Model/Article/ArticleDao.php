@@ -18,7 +18,7 @@ class ArticleDao extends BaseDao implements ArticleDaoInterface
     public function findByNewest(int $limit = 10, int $offset = 0, bool $publishedOnly = true): array
     {
         $qb = $this->getRepository()->createQueryBuilder('a');
-        $qb->addSelect('COALESCE((a.nextArticle), 9999999999999) AS HIDDEN srt');
+        $qb->addSelect('COALESCE((a.previousArticle), -1) AS HIDDEN srt');
 
         if ($publishedOnly) {
             $qb->where('a.published = :published')
