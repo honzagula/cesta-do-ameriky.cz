@@ -54,4 +54,5 @@
 
 .img-gallery {
 	padding-bottom: 2px;
+	max-height: 150px;
 }
