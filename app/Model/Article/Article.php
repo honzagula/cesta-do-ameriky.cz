@@ -263,6 +263,7 @@ class Article
 
     public function getClearedContent(): string
     {
-        return strip_tags($this->getParsedContent());
+        $str = strip_tags($this->getParsedContent());
+        return preg_replace("/&#?[a-z0-9]{2,8};/i",'', $str);
     }
 }

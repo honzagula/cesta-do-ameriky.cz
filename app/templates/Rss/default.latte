@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Cesta do Ameriky</title>
+        <link>https://cesta-do-ameriky.cz</link>
+        <description>Krátké příběhy o našich cestách do USA</description>
+        <language>cs-CZ</language>
+        {foreach $articles as $article}
+        <item>
+            <title>{$article->getTitle()}</title>
+            <link>{plink //:Article:default id => $article->getId(), slug => $article->getSlug()}</link>
+            <description>
+                {$article->getClearedContent()|truncate:400:'...'}
+            </description>
+        </item>
+        {/foreach}
+    </channel>
+</rss>
