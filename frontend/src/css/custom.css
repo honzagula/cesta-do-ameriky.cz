@@ -60,3 +60,11 @@
 .img-gallery {
 	padding: 2px;
 }
+
+.sklik {
+	padding-top: 10px;
+}
+
+.sklik iframe {
+	margin: 0px auto;
+}

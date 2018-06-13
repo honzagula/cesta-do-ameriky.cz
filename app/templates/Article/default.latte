@@ -58,11 +58,6 @@
         </div>
 
         <hr>
-        <div class="row">
-            <div class="col-md-12 centered">
-                {include "../_snippets/_sclick_horizontal.latte"}
-            </div>
-        </div>
 
         <hr n:if="count($article->getPhotos())">
         <div class="row" n:if="count($article->getPhotos())">
@@ -71,6 +66,12 @@
                     <a href="{$photo|img}" data-rel="lightcase:photos"><img src="{$photo|imgThumb}" class="img-responsive img-gallery"></a>
                 </div>
             {/foreach}
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 centered">
+                {include "../_snippets/_sclick_horizontal.latte"}
+            </div>
         </div>
 
         <hr>
