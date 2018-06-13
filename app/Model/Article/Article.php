@@ -233,7 +233,7 @@ class Article
 
     public function getSocialContent(): string
     {
-        return !empty($this->socialContent) ? $this->socialContent : substr($this->getContent(), 0, 300) . '...';
+        return !empty($this->socialContent) ? $this->socialContent : substr($this->getClearedContent(), 0, 300) . '...';
     }
 
     public function getSocialPhoto(): ?Photo
