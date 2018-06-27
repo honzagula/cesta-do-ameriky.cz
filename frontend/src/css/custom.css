@@ -52,6 +52,11 @@
 	font-family: 'Open Sans', sans-serif;
 }
 
+.img-gallery-container {
+	overflow: hidden;
+	height: 150px;
+}
+
 .img-gallery {
-	padding-bottom: 2px;
+	padding: 2px;
 }

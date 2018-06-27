@@ -233,7 +233,7 @@ class Article
 
     public function getSocialContent(): string
     {
-        return !empty($this->socialContent) ? $this->socialContent : substr($this->getContent(), 0, 300) . '...';
+        return !empty($this->socialContent) ? $this->socialContent : substr($this->getClearedContent(), 0, 300) . '...';
     }
 
     public function getSocialPhoto(): ?Photo
@@ -263,6 +263,7 @@ class Article
 
     public function getClearedContent(): string
     {
-        return strip_tags($this->getParsedContent());
+        $str = strip_tags($this->getParsedContent());
+        return preg_replace("/&#?[a-z0-9]{2,8};/i",'', $str);
     }
 }
