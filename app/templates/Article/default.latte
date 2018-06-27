@@ -5,7 +5,7 @@
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="{$article->getSocialTitle()}" />
     <meta property="og:description"        content="{$article->getSocialContent()}" />
-    <meta property="og:image"              content="{if $article->getMainPhoto()}{$article->getSocialPhoto()|img}{else}{$hostname}/images/{$defaultImage}{/if}" />
+    <meta property="og:image"              content="{if $article->getMainPhoto()}{$hostname}{$article->getSocialPhoto()|img}{else}{$hostname}/images/{$defaultImage}{/if}" />
     <meta property="fb:app_id"             content="{$socialConfig->getFacebookAppId()|noescape}" />
 {/block}
 
